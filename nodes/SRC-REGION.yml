@@ -1,0 +1,73 @@
+fileVersion: 1
+id: 5369f851-513a-4eaa-aea9-8f267406995f
+name: REGION
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: SRC
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e4c66372-e7b7-4282-b743-f335137fced9
+          stepCounter: 5369f851-513a-4eaa-aea9-8f267406995f
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: R_REGIONKEY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ffd91154-a48d-466f-8ce5-c88e3ee95a28
+          stepCounter: 5369f851-513a-4eaa-aea9-8f267406995f
+        config: {}
+        dataType: VARCHAR(25)
+        defaultValue: ""
+        description: ""
+        name: R_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b984bc84-0379-4091-b901-a3297fef3ada
+          stepCounter: 5369f851-513a-4eaa-aea9-8f267406995f
+        config: {}
+        dataType: VARCHAR(152)
+        defaultValue: ""
+        description: ""
+        name: R_COMMENT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: REGION
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node
