@@ -1,0 +1,11 @@
+fileVersion: 1
+id: "13"
+mappingDefinitions:
+  SRC:
+    database: CLAUER_DEV
+    schema: TPCH
+  TARGET:
+    database: CLAUER_DEV
+    schema: BRONZE
+name: Testing
+type: Environment
