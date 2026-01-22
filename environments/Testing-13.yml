@@ -1,0 +1,17 @@
+fileVersion: 1
+id: "13"
+mappingDefinitions:
+  GOLD:
+    database: CLAUER_DEV
+    schema: GOLD
+  SAMPLE:
+    database: CLAUER_DEV
+    schema: TPCH
+  TASTY_BYTES_SOURCE:
+    database: CLAUER_DEV
+    schema: TASTY_BYTES
+  WORK:
+    database: CLAUER_DEV
+    schema: SILVER
+name: Testing
+type: Environment

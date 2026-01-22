@@ -1,0 +1,22 @@
+config:
+  entities:
+    nodeTypes:
+      "305":
+        defaultStorageLocation: null
+        isDisabled: false
+      "307":
+        defaultStorageLocation: null
+        isDisabled: false
+      "320":
+        defaultStorageLocation: null
+        isDisabled: false
+      "321":
+        defaultStorageLocation: null
+        isDisabled: false
+  packageVariables: ""
+fileVersion: 1
+id: "@coalesce/snowflake/iceberg-tables"
+name: Snowflake-Iceberg-Tables
+packageID: "@coalesce/snowflake/iceberg-tables"
+releaseID: 3fa839f0-8315-4602-9f6e-bf12729b7bff
+type: Package
