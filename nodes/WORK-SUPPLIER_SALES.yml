@@ -1,0 +1,70 @@
+fileVersion: 1
+id: 55a59da3-e8d6-4f1c-aee1-86af4fb6ad92
+name: SUPPLIER_SALES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Total sales amount by supplier
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-0acf-763f-8fe8-84e85dc2cc02
+          stepCounter: 55a59da3-e8d6-4f1c-aee1-86af4fb6ad92
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-0acf-763f-8fe8-8a2695277cf2
+          stepCounter: 55a59da3-e8d6-4f1c-aee1-86af4fb6ad92
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: SALES_AMT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SUM(SALES_AMT)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: SALES_BASE
+        join:
+          joinCondition: |-
+            FROM {{ ref('WORK', 'SALES_BASE') }}
+            GROUP BY SUPPKEY
+        name: STG_NODE
+        noLinkRefs: []
+  name: SUPPLIER_SALES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

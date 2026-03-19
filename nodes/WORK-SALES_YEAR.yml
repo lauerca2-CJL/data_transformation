@@ -1,0 +1,64 @@
+fileVersion: 1
+id: abdd0b10-2f59-452e-a5ce-0843ccf37321
+name: SALES_YEAR
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Top 5 most recent order years
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c5-f19c-759a-b9b0-f4324cc1f482
+          stepCounter: abdd0b10-2f59-452e-a5ce-0843ccf37321
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: YR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ef4ab950-b4fa-45bf-bc1e-200c9b65aade
+                stepCounter: 497825c1-790e-4d26-9ef2-ce791384d9e4
+            transform: YEAR(O_ORDERDATE)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SAMPLE
+            nodeName: ORDERS
+        join:
+          joinCondition: |-
+            FROM (
+                SELECT DISTINCT O_ORDERDATE
+                FROM {{ ref('SAMPLE', 'ORDERS') }}
+            )
+            GROUP BY YEAR(O_ORDERDATE)
+            ORDER BY YEAR(O_ORDERDATE) DESC
+            LIMIT 5
+        name: STG_NODE
+        noLinkRefs: []
+  name: SALES_YEAR
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

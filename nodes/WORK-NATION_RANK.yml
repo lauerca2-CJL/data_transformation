@@ -1,0 +1,107 @@
+fileVersion: 1
+id: 0b38949e-b2c4-42f2-83fe-0057f653ac45
+name: NATION_RANK
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Sales by supplier and nation with ranking
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-16e6-776f-91c6-607e22211112
+          stepCounter: 0b38949e-b2c4-42f2-83fe-0057f653ac45
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-16e6-776f-91c6-64e200e0cada
+          stepCounter: 0b38949e-b2c4-42f2-83fe-0057f653ac45
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: NATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: NATION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-16e6-776f-91c6-6a5a8ad062fb
+          stepCounter: 0b38949e-b2c4-42f2-83fe-0057f653ac45
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: SALES_AMT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SALES_AMT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-16e6-776f-91c6-6e40cb0afda0
+          stepCounter: 0b38949e-b2c4-42f2-83fe-0057f653ac45
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: NATION_RANK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ROW_NUMBER() OVER (PARTITION BY SUPPKEY ORDER BY SALES_AMT)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-16e6-776f-91c6-7170e6105bce
+          stepCounter: 0b38949e-b2c4-42f2-83fe-0057f653ac45
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: NATION_RANK_REV
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ROW_NUMBER() OVER (PARTITION BY SUPPKEY ORDER BY SALES_AMT DESC)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: SALES_BASE
+        join:
+          joinCondition: FROM {{ ref('WORK', 'SALES_BASE') }}
+        name: STG_NODE
+        noLinkRefs: []
+  name: NATION_RANK
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

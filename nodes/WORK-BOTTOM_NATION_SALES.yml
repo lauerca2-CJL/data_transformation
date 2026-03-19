@@ -1,0 +1,84 @@
+fileVersion: 1
+id: e2287f0f-6cc1-45ea-963b-5ac51f9a7d79
+name: BOTTOM_NATION_SALES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Bottom 10 nations by sales for each supplier
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-34ce-7658-ac15-ba237637928b
+          stepCounter: e2287f0f-6cc1-45ea-963b-5ac51f9a7d79
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-34ce-7658-ac15-be232f3c7c85
+          stepCounter: e2287f0f-6cc1-45ea-963b-5ac51f9a7d79
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: SALES_AMT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SUM(SALES_AMT)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-34ce-7658-ac15-c243ce114589
+          stepCounter: e2287f0f-6cc1-45ea-963b-5ac51f9a7d79
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: BOTTOM_NATIONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: LISTAGG(NATION, ',') WITHIN GROUP (ORDER BY NATION_RANK)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: NATION_RANK
+        join:
+          joinCondition: |-
+            FROM {{ ref('WORK', 'NATION_RANK') }}
+            WHERE NATION_RANK_REV <= 10
+            GROUP BY SUPPKEY
+        name: STG_NODE
+        noLinkRefs: []
+  name: BOTTOM_NATION_SALES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

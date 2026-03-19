@@ -1,0 +1,96 @@
+fileVersion: 1
+id: 4e847ef1-f378-44e3-a2da-fa8a7ba3a232
+name: SALES_BASE
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Base sales data by supplier and nation for recent years with finished orders
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-0242-74b6-b3b9-4c59f3464aee
+          stepCounter: 4e847ef1-f378-44e3-a2da-fa8a7ba3a232
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: L.L_SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-0242-74b6-b3b9-50ffb492bb41
+          stepCounter: 4e847ef1-f378-44e3-a2da-fa8a7ba3a232
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: NATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: N.N_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-0242-74b6-b3b9-55aa5df7c163
+          stepCounter: 4e847ef1-f378-44e3-a2da-fa8a7ba3a232
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: SALES_AMT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SUM(((L.L_EXTENDEDPRICE * L.L_QUANTITY) * (1 - L.L_DISCOUNT)))
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SAMPLE
+            nodeName: CUSTOMER
+          - locationName: SAMPLE
+            nodeName: LINEITEM
+          - locationName: SAMPLE
+            nodeName: NATION
+          - locationName: SAMPLE
+            nodeName: ORDERS
+          - locationName: WORK
+            nodeName: SALES_YEAR
+        join:
+          joinCondition: |-
+            FROM {{ ref('SAMPLE', 'LINEITEM') }} L
+            JOIN {{ ref('SAMPLE', 'ORDERS') }} O ON L.L_ORDERKEY = O.O_ORDERKEY
+            JOIN {{ ref('SAMPLE', 'CUSTOMER') }} C ON O.O_CUSTKEY = C.C_CUSTKEY
+            JOIN {{ ref('SAMPLE', 'NATION') }} N ON C.C_NATIONKEY = N.N_NATIONKEY
+            WHERE O.O_ORDERSTATUS = 'F'
+              AND YEAR(O.O_ORDERDATE) IN (SELECT YR FROM {{ ref('WORK', 'SALES_YEAR') }})
+            GROUP BY L.L_SUPPKEY, N.N_NAME
+        name: STG_NODE
+        noLinkRefs: []
+  name: SALES_BASE
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

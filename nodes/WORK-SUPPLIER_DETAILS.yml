@@ -1,0 +1,85 @@
+fileVersion: 1
+id: 5f75d3a3-b57d-4196-baa6-7c14980606b4
+name: SUPPLIER_DETAILS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Supplier details with name and nation
+  isMultisource: false
+  locationName: WORK
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-4186-75e0-af41-01dabbe4cb3c
+          stepCounter: 5f75d3a3-b57d-4196-baa6-7c14980606b4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: S.S_SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-4186-75e0-af41-068b511ef3d9
+          stepCounter: 5f75d3a3-b57d-4196-baa6-7c14980606b4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: SUPP_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: S.S_NAME || ' (' || N.N_NAME || ')'
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c6-4186-75e0-af41-0be27c8f6e95
+          stepCounter: 5f75d3a3-b57d-4196-baa6-7c14980606b4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: NATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: N.N_NAME
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SAMPLE
+            nodeName: NATION
+          - locationName: SAMPLE
+            nodeName: SUPPLIER
+        join:
+          joinCondition: |-
+            FROM {{ ref('SAMPLE', 'SUPPLIER') }} S
+            JOIN {{ ref('SAMPLE', 'NATION') }} N ON S.S_NATIONKEY = N.N_NATIONKEY
+        name: SUPPLIER_DETAILS
+        noLinkRefs: []
+  name: SUPPLIER_DETAILS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

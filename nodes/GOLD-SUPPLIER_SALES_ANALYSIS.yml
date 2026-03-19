@@ -1,0 +1,262 @@
+fileVersion: 1
+id: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+name: SUPPLIER_SALES_ANALYSIS
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Comprehensive supplier sales analysis with breakdowns by nation tiers
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c7-05ab-735c-8c43-c76ac369dcf2
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SD.SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c7-05ab-735c-8c43-c9d326db7ac3
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: SUPP_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SD.SUPP_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c7-05ab-735c-8c43-ce1b8c48f60d
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: NATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SD.NATION
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c7-05ab-735c-8c43-d30bc21743a2
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: TOTAL_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SS.SALES_AMT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c7-05ab-735c-8c43-d439df099812
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: TOP_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TNS.SALES_AMT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c7-05ab-735c-8c43-d9977b25e23a
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: MID_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: MNS.SALES_AMT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c7-05ab-735c-8c43-dce6f1425fba
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: BOTTOM_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: BNS.SALES_AMT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019be6c7-05ac-7685-b725-9e0d0408ada4
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: TOP_NATIONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: TNS.TOP_NATIONS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5770b2f7-79da-48a2-9f83-1ea918ee545b
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isBusinessKey: false
+        isSurrogateKey: true
+        name: DIM_NODE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 835a8f43-d044-45a4-a407-965497d0da92
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isBusinessKey: false
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f73a0db-8b42-4da0-a67c-bf02ef4654f6
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isBusinessKey: false
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ccec756b-d8fe-4b02-b149-5851567e0bbc
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isBusinessKey: false
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ddac0242-c95b-4f10-8231-c869203e6052
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isBusinessKey: false
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 03e6baf2-113c-4ab2-9317-e213e3701745
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isBusinessKey: false
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b48f48ff-ac4c-4937-8f9c-8a88405c3867
+          stepCounter: 2e64bdfa-276f-45dd-93f2-934f02c72da9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isBusinessKey: false
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: WORK
+            nodeName: BOTTOM_NATION_SALES
+          - locationName: WORK
+            nodeName: MID_NATION_SALES
+          - locationName: WORK
+            nodeName: SUPPLIER_DETAILS
+          - locationName: WORK
+            nodeName: SUPPLIER_SALES
+          - locationName: WORK
+            nodeName: TOP_NATION_SALES
+        join:
+          joinCondition: |-
+            FROM {{ ref('WORK', 'SUPPLIER_DETAILS') }} SD
+            JOIN {{ ref('WORK', 'SUPPLIER_SALES') }} SS ON SD.SUPPKEY = SS.SUPPKEY
+            JOIN {{ ref('WORK', 'TOP_NATION_SALES') }} TNS ON SD.SUPPKEY = TNS.SUPPKEY
+            JOIN {{ ref('WORK', 'MID_NATION_SALES') }} MNS ON SD.SUPPKEY = MNS.SUPPKEY
+            JOIN {{ ref('WORK', 'BOTTOM_NATION_SALES') }} BNS ON SD.SUPPKEY = BNS.SUPPKEY
+        name: SUPPLIER_SALES_ANALYSIS
+        noLinkRefs: []
+  name: SUPPLIER_SALES_ANALYSIS
+  overrideSQL: false
+  schema: ""
+  sqlType: Fact
+  type: sql
+  version: 1
+type: Node
