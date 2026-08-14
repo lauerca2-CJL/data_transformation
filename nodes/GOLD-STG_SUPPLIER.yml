@@ -1,0 +1,173 @@
+fileVersion: 1
+id: 55885888-c504-4007-a8de-b13152c0e2de
+name: STG_SUPPLIER
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Supplier staging enriched with nation and region names.
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: true
+        columnReference:
+          columnCounter: 019ffbe0-8871-7494-89c4-03360c78ea20
+          stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: true
+        name: S_SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"S\".\"S_SUPPKEY\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-8871-7494-89c4-070d083852d1
+          stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        isBusinessKey: false
+        name: S_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"S\".\"S_NAME\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-8871-7494-89c4-095b8b595344
+          stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        isBusinessKey: false
+        name: S_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"S\".\"S_ADDRESS\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-8871-7494-89c4-0cab8ce3b134
+          stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+        config: {}
+        dataType: VARCHAR(15)
+        description: ""
+        isBusinessKey: false
+        name: S_PHONE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"S\".\"S_PHONE\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-8871-7494-89c4-10dbeb854228
+          stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        isBusinessKey: false
+        name: S_ACCTBAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"S\".\"S_ACCTBAL\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-8871-7494-89c4-1592a0072fa9
+          stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: false
+        name: S_NATIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"S\".\"S_NATIONKEY\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-8871-7494-89c4-1a5f1112fcd8
+          stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        isBusinessKey: false
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"N\".\"N_NAME\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-8871-7494-89c4-1e6a55993705
+          stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        isBusinessKey: false
+        name: REGION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"R\".\"R_NAME\""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: NATION
+          - locationName: BRONZE
+            nodeName: REGION
+          - locationName: BRONZE
+            nodeName: SUPPLIER
+        join:
+          joinCondition: |-
+            FROM {{ ref('BRONZE', 'SUPPLIER') }} S
+            LEFT JOIN {{ ref('BRONZE', 'NATION') }} N
+              ON S.S_NATIONKEY = N.N_NATIONKEY
+            LEFT JOIN {{ ref('BRONZE', 'REGION') }} R
+              ON N.N_REGIONKEY = R.R_REGIONKEY
+        name: STG_NODE
+        noLinkRefs: []
+  name: STG_SUPPLIER
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,171 @@
+fileVersion: 1
+id: e116154d-df2a-43d1-bef9-c0628fb8fade
+name: STG_PARTSUPP
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Part-supplier staging enriched with part and supplier attributes.
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-33149c85d895
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_PARTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"PS\".\"PS_PARTKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-3462829c5a32
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"PS\".\"PS_SUPPKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-3975af137600
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_AVAILQTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"PS\".\"PS_AVAILQTY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-3c8efadee406
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: PS_SUPPLYCOST
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"PS\".\"PS_SUPPLYCOST\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-400f5d086f96
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: VARCHAR(55)
+        description: ""
+        name: P_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"P\".\"P_NAME\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-45ff5135eb1e
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: P_MFGR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"P\".\"P_MFGR\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-487e015e40c9
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: P_BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"P\".\"P_BRAND\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-4d1e9aba7e7e
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: P_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"P\".\"P_TYPE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-52c3fa851c8c
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: P_RETAILPRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"P\".\"P_RETAILPRICE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-a231-737f-9f61-55e4f14d004a
+          stepCounter: e116154d-df2a-43d1-bef9-c0628fb8fade
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: S_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"S\".\"S_NAME\""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: PART
+          - locationName: BRONZE
+            nodeName: PARTSUPP
+          - locationName: BRONZE
+            nodeName: SUPPLIER
+        join:
+          joinCondition: |-
+            FROM {{ ref('BRONZE', 'PARTSUPP') }} PS
+            LEFT JOIN {{ ref('BRONZE', 'PART') }} P
+              ON PS.PS_PARTKEY = P.P_PARTKEY
+            LEFT JOIN {{ ref('BRONZE', 'SUPPLIER') }} S
+              ON PS.PS_SUPPKEY = S.S_SUPPKEY
+        name: STG_PARTSUPP
+        noLinkRefs: []
+  name: STG_PARTSUPP
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

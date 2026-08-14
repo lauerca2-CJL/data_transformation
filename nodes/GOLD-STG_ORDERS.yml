@@ -1,0 +1,184 @@
+fileVersion: 1
+id: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+name: STG_ORDERS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Orders staging enriched with customer name and market segment.
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: true
+        columnReference:
+          columnCounter: 019ffbe0-c769-734d-9cbf-1bbd5bdd4cd3
+          stepCounter: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: true
+        name: O_ORDERKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"O\".\"O_ORDERKEY\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-c769-734d-9cbf-1f0b6c061aac
+          stepCounter: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: false
+        name: O_CUSTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"O\".\"O_CUSTKEY\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-c769-734d-9cbf-22acc633c6f9
+          stepCounter: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        isBusinessKey: false
+        name: O_ORDERSTATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"O\".\"O_ORDERSTATUS\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-c769-734d-9cbf-246a63704816
+          stepCounter: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        isBusinessKey: false
+        name: O_TOTALPRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"O\".\"O_TOTALPRICE\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-c769-734d-9cbf-29b746f12b2a
+          stepCounter: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+        config: {}
+        dataType: DATE
+        description: ""
+        isBusinessKey: false
+        name: O_ORDERDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"O\".\"O_ORDERDATE\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-c769-734d-9cbf-2d463558cab8
+          stepCounter: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+        config: {}
+        dataType: VARCHAR(15)
+        description: ""
+        isBusinessKey: false
+        name: O_ORDERPRIORITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"O\".\"O_ORDERPRIORITY\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-c769-734d-9cbf-32ca98c64bfe
+          stepCounter: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: false
+        name: O_SHIPPRIORITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"O\".\"O_SHIPPRIORITY\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-c769-734d-9cbf-3733dd83dc13
+          stepCounter: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        isBusinessKey: false
+        name: C_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"C\".\"C_NAME\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-c769-734d-9cbf-3a3c5d622443
+          stepCounter: 0383bdae-6f30-4dcd-8725-79ec21afb45c
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        isBusinessKey: false
+        name: C_MKTSEGMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"C\".\"C_MKTSEGMENT\""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: CUSTOMER
+          - locationName: BRONZE
+            nodeName: ORDERS
+        join:
+          joinCondition: |-
+            FROM {{ ref('BRONZE', 'ORDERS') }} O
+            LEFT JOIN {{ ref('BRONZE', 'CUSTOMER') }} C
+              ON O.O_CUSTKEY = C.C_CUSTKEY
+        name: STG_NODE
+        noLinkRefs: []
+  name: STG_ORDERS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

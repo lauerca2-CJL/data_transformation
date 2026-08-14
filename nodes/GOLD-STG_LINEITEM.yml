@@ -1,0 +1,243 @@
+fileVersion: 1
+id: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+name: STG_LINEITEM
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Line item staging enriched with part and supplier attributes and computed net revenue.
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-4a030cb5b63d
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: L_ORDERKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_ORDERKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-4d39847ed78b
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: L_LINENUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_LINENUMBER\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-53f18ee7f260
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: L_PARTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_PARTKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-57491863876b
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: L_SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_SUPPKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-5ae2a23a4df8
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: L_QUANTITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_QUANTITY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-5f051dcd334b
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: L_EXTENDEDPRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_EXTENDEDPRICE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-60d1c2db665b
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: L_DISCOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_DISCOUNT\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-66eb7834c3fe
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: L_TAX
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_TAX\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-6877f9721b43
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: NUMBER(38,4)
+        description: Extended price after discount and tax.
+        name: NET_REVENUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_EXTENDEDPRICE\" * (1 - \"L\".\"L_DISCOUNT\") * (1 + \"L\".\"L_TAX\")"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-6eea55a811dd
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: L_RETURNFLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_RETURNFLAG\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-73d70dd03114
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: L_LINESTATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_LINESTATUS\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-77baebe6443f
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: DATE
+        description: ""
+        name: L_SHIPDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_SHIPDATE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-78ab9f328b1e
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: L_SHIPMODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"L\".\"L_SHIPMODE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-7d3520813c39
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: VARCHAR(55)
+        description: ""
+        name: P_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"P\".\"P_NAME\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-81ff6e65be6d
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: P_BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"P\".\"P_BRAND\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ffbe0-e044-77bf-a9e7-845bc744bc78
+          stepCounter: 5dae352f-c4c4-4fc6-92c3-a8cf6154f35b
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: S_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"S\".\"S_NAME\""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: LINEITEM
+          - locationName: BRONZE
+            nodeName: PART
+          - locationName: BRONZE
+            nodeName: SUPPLIER
+        join:
+          joinCondition: |-
+            FROM {{ ref('BRONZE', 'LINEITEM') }} L
+            LEFT JOIN {{ ref('BRONZE', 'PART') }} P
+              ON L.L_PARTKEY = P.P_PARTKEY
+            LEFT JOIN {{ ref('BRONZE', 'SUPPLIER') }} S
+              ON L.L_SUPPKEY = S.S_SUPPKEY
+        name: STG_NODE
+        noLinkRefs: []
+  name: STG_LINEITEM
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

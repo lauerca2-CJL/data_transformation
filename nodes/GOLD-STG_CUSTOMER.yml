@@ -1,0 +1,188 @@
+fileVersion: 1
+id: ecb6e483-f65b-466b-a6f4-0dec425b308b
+name: STG_CUSTOMER
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Customer staging enriched with nation and region names.
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: true
+          isDistinct: true
+        columnReference:
+          columnCounter: 019ffbe0-7049-7108-9d75-d309dc0e3895
+          stepCounter: ecb6e483-f65b-466b-a6f4-0dec425b308b
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: true
+        name: C_CUSTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"C\".\"C_CUSTKEY\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-704a-736a-876e-14e574ec748f
+          stepCounter: ecb6e483-f65b-466b-a6f4-0dec425b308b
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        isBusinessKey: false
+        name: C_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"C\".\"C_NAME\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-704a-736a-876e-1ba828e4e194
+          stepCounter: ecb6e483-f65b-466b-a6f4-0dec425b308b
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        isBusinessKey: false
+        name: C_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"C\".\"C_ADDRESS\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-704a-736a-876e-1d88ab457648
+          stepCounter: ecb6e483-f65b-466b-a6f4-0dec425b308b
+        config: {}
+        dataType: VARCHAR(15)
+        description: ""
+        isBusinessKey: false
+        name: C_PHONE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"C\".\"C_PHONE\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-704a-736a-876e-210d4c428909
+          stepCounter: ecb6e483-f65b-466b-a6f4-0dec425b308b
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        isBusinessKey: false
+        name: C_ACCTBAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"C\".\"C_ACCTBAL\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-704a-736a-876e-2558e74c4d2b
+          stepCounter: ecb6e483-f65b-466b-a6f4-0dec425b308b
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        isBusinessKey: false
+        name: C_MKTSEGMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"C\".\"C_MKTSEGMENT\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-704a-736a-876e-29ad80a0c953
+          stepCounter: ecb6e483-f65b-466b-a6f4-0dec425b308b
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: false
+        name: C_NATIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"C\".\"C_NATIONKEY\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-704a-736a-876e-2fd214fb626f
+          stepCounter: ecb6e483-f65b-466b-a6f4-0dec425b308b
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        isBusinessKey: false
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"N\".\"N_NAME\""
+      - appliedColumnTests:
+          hasNull: false
+          isDistinct: false
+        columnReference:
+          columnCounter: 019ffbe0-704a-736a-876e-32d244bce488
+          stepCounter: ecb6e483-f65b-466b-a6f4-0dec425b308b
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        isBusinessKey: false
+        name: REGION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"R\".\"R_NAME\""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs:
+      - hasNull
+      - isDistinct
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE
+            nodeName: CUSTOMER
+          - locationName: BRONZE
+            nodeName: NATION
+          - locationName: BRONZE
+            nodeName: REGION
+        join:
+          joinCondition: |-
+            FROM {{ ref('BRONZE', 'CUSTOMER') }} C
+            LEFT JOIN {{ ref('BRONZE', 'NATION') }} N
+              ON C.C_NATIONKEY = N.N_NATIONKEY
+            LEFT JOIN {{ ref('BRONZE', 'REGION') }} R
+              ON N.N_REGIONKEY = R.R_REGIONKEY
+        name: STG_NODE
+        noLinkRefs: []
+  name: STG_CUSTOMER
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
