@@ -1,0 +1,184 @@
+fileVersion: 1
+id: 4eed088f-9f0d-4fe7-b468-af766ec68912
+name: FCT_SUPPLIER
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Supplier staging enriched with nation and region names.
+  isMultisource: false
+  locationName: GOLD
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a28a67c1-88a8-453e-afd4-db0b2a9f5856
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: S_SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ffbe0-8871-7494-89c4-03360c78ea20
+                stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 67106c22-798a-4b8a-9721-9e70b0eeebe3
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: S_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ffbe0-8871-7494-89c4-070d083852d1
+                stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c87dd383-bef9-4c3a-ab55-dea9450d589e
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: S_ADDRESS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ffbe0-8871-7494-89c4-095b8b595344
+                stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3d15f42-b4b9-47ba-bb1e-e1d7dfccee17
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: VARCHAR(15)
+        description: ""
+        name: S_PHONE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ffbe0-8871-7494-89c4-0cab8ce3b134
+                stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 280c4cd8-c0a5-44b1-aadc-955967f16db2
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: S_ACCTBAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ffbe0-8871-7494-89c4-10dbeb854228
+                stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ede5488-8411-444a-8992-1f2c69493031
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: S_NATIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ffbe0-8871-7494-89c4-1592a0072fa9
+                stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 859db5cb-da25-4fac-98c2-b624692873d1
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ffbe0-8871-7494-89c4-1a5f1112fcd8
+                stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6151fa97-995b-4568-8cd1-78fd9c0f4c1e
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: REGION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 019ffbe0-8871-7494-89c4-1e6a55993705
+                stepCounter: 55885888-c504-4007-a8de-b13152c0e2de
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e668a24-fc72-42eb-b7a7-819e26234573
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d4b7e63b-f42e-417d-a00b-086b3984f636
+          stepCounter: 4eed088f-9f0d-4fe7-b468-af766ec68912
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_SUPPLIER: 55885888-c504-4007-a8de-b13152c0e2de
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: GOLD
+            nodeName: STG_SUPPLIER
+        join:
+          joinCondition: FROM {{ ref('GOLD', 'STG_SUPPLIER') }} "STG_SUPPLIER"
+        name: FCT_SUPPLIER
+        noLinkRefs: []
+  name: FCT_SUPPLIER
+  overrideSQL: false
+  schema: ""
+  sqlType: Fact
+  type: sql
+  version: 1
+type: Node
